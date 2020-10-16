@@ -1,0 +1,3 @@
+rootProject.name = "androidRPCKitExample"
+include ':app'
+include ':andrtoidRPCKit'
