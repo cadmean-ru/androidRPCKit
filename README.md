@@ -2,6 +2,27 @@
 
 cadRPC is an easy-to-use RPC technology.
 
+## Installation 
+
+Step 1. Add it in your root build.gradle at the end of repositories:
+
+```groovy
+allprojects {
+    repositories {
+        // ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+	
+Step 2. Add the dependency
+
+```groovy
+dependencies {
+        implementation 'com.github.cadmean-ru:androidRPCKit:v0.1.1'
+}
+```
+
 ## How to use
 
 ```kotlin
