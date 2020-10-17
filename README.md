@@ -44,3 +44,4 @@ It's first argument is the result, and the second is the int error code.
 ## Known issues
 
 * Numeric results always returned as double. So, for now use `Double` as result type.
+* No authentication
