@@ -1,59 +1,37 @@
 package ru.cadmean.androidrpckit.example
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.setContent
-import androidx.ui.tooling.preview.Preview
-import ru.cadmean.androidrpckit.RpcClient
-import ru.cadmean.androidrpckit.TransportException
-import ru.cadmean.androidrpckit.example.ui.AndroidRPCKitExampleTheme
+import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MainView()
-        }
-    }
-}
 
-@Composable fun MainView() {
-    AndroidRPCKitExampleTheme {
-        // A surface container using the 'background' color from the theme
-        Surface(color = MaterialTheme.colors.background) {
-            Column {
-                Greeting("Android")
-                RpcView()
+        setContentView(R.layout.activity_main)
+
+        val rpcViewModel: RpcViewModel by viewModels()
+
+        call_button.setOnClickListener {
+            try {
+                val a = edit_a.text.toString().toInt()
+                val b = edit_b.text.toString().toInt()
+                rpcViewModel.call(a, b)
+            } catch (ex: NumberFormatException) {
+                Toast.makeText(this, "bruh", Toast.LENGTH_LONG).show()
             }
         }
-    }
-}
 
-@Composable fun RpcView() {
-    val rpc = RpcClient("http://testrpc.cadmean.ru")
-    Button(onClick = {
-        rpc.f("sum").call<Double>(1, 68) { res, err ->
-            Log.d("Main", "Call finished: $res $err")
+        rpcViewModel.result.observe(this) {
+            call_result_text.text = getString(R.string.call_result, it)
         }
-    }) {
-        Text("RPC taim")
+
+        rpcViewModel.error.observe(this) {
+            call_error_text.text = getString(R.string.call_error, it)
+        }
     }
-}
-
-@Composable fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable fun DefaultPreview() {
-    MainView()
 }

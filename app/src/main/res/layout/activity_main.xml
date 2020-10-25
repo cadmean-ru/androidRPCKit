@@ -4,15 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/main_activity_title"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:id="@+id/main_title"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        android:text="@string/main_description"
+        android:id="@+id/main_description"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/main_description"
+        android:text="@string/enter_params"
+        android:id="@+id/params_title"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/param_a"
+        app:layout_constraintTop_toBottomOf="@id/params_title"
+        app:layout_constraintBottom_toBottomOf="@id/edit_a"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/param_a_label" />
 
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:id="@+id/edit_a"
+        app:layout_constraintTop_toBottomOf="@id/params_title"
+        app:layout_constraintStart_toEndOf="@id/param_a_label"
+        app:layout_constraintEnd_toStartOf="@id/param_b_label"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/param_b_label"
+        app:layout_constraintTop_toBottomOf="@id/params_title"
+        app:layout_constraintBottom_toBottomOf="@id/edit_b"
+        app:layout_constraintStart_toEndOf="@id/edit_a"
+        app:layout_constraintEnd_toStartOf="@id/edit_b"
+        android:text="@string/param_b"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:id="@+id/edit_b"
+        app:layout_constraintTop_toBottomOf="@id/params_title"
+        app:layout_constraintStart_toEndOf="@id/param_b_label"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edit_a"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/call_button"
+        android:text="@string/make_call"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/call_button"
+        android:text="@string/call_result"
+        android:id="@+id/call_result_text"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/call_result_text"
+        android:text="@string/call_error"
+        android:id="@+id/call_error_text"
+        android:textColor="@color/black"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

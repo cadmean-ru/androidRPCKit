@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">androidRPCKitExample</string>
-    <string name="title_activity_main">My Compose App</string>
+
+    <string name="main_activity_title">Hello, Cadmean.RPCKit!</string>
+    <string name="main_description">This app makes a call to the sum RPC function at testrpc.cadmean.ru, that sums two numbers.</string>
+    <string name="make_call">Make a call</string>
+    <string name="enter_params">Enter the function parameters:</string>
+    <string name="param_a">a: </string>
+    <string name="param_b">b: </string>
+    <string name="call_result">Result: %1$f</string>
+    <string name="call_error">Error: %1$d</string>
 </resources>
