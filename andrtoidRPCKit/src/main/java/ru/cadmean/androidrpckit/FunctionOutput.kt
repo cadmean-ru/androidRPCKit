@@ -1,7 +1,10 @@
 package ru.cadmean.androidrpckit
 
-public class FunctionOutput<TResult>(
+import kotlinx.serialization.Serializable
+
+@Serializable
+public class FunctionOutput<out TResult>(
     public val error: Int,
-    public val result: TResult,
-    public val metaData: Map<String, Any>?,
+    public val result: TResult?,
+    public val metaData: Map<String, String?>?,
 )
