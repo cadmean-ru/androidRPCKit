@@ -1,6 +1,8 @@
 # cadRPC client library for Android
 
-cadRPC is an easy-to-use RPC technology.
+[![](https://jitpack.io/v/cadmean-ru/androidRPCKit.svg)](https://jitpack.io/#cadmean-ru/androidRPCKit)
+
+cadRPC is an easy-to-use RPC technology. It's goal is to simplify the communication with your web API, hiding all the HTTP and JSON poppycock.
 
 ## Installation 
 
@@ -25,10 +27,12 @@ dependencies {
 
 ## How to use
 
+An example is worth a thousand words.
+
 ```kotlin
 val rpc = RpcClient("http://testrpc.cadmean.ru")
 
-rpc.f("sum").call<Double>(1, 68) { res, err ->
+rpc.f("sum").call<Int>(1, 68) { res, err ->
     Log.d("RPC", "Call finished: $res $err")
 }
 ```
@@ -39,9 +43,25 @@ specific function at your server. Finally, you use
 to call the specified function. The generic argument is the expected result type of the RPC function. 
 `functionArguments` are the arguments you pass to the RPC function. 
 `onCompplete` is the callback, that is called when the call is finished. 
-It's first argument is the result, and the second is the int error code. 
+It's first argument is the result, and the second is the int error code.
+In this case we are calling the "sum" function at testrpc.cadmean.ru, that takes two integers and returns an integer.
+Note, that the [example rpc server](https://github.com/cadmean-ru/ExampleRpcServer) is running at testrpc.cadmean.ru.
+You can also use your custom classes as function arguments and return type.
 
 ## Known issues
 
-* Numeric results always returned as double. So, for now use `Double` as result type.
-* No authentication
+* Date deserialization not working. You should convert it from string manually.
+
+## To be implemented
+
+* Streaming, e. g. web sockets
+
+## Contributing
+
+Feel free to submit issues or create pull requests following fork-and-pull git workflow.
+
+## See also
+
+* [C# client and server library](https://github.com/cadmean-ru/Cadmean.RPC)
+* [Python client library](https://github.com/cadmean-ru/pythonRPCKit)
+* [Example server](https://github.com/cadmean-ru/ExampleRpcServer)
