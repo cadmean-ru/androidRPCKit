@@ -19,9 +19,7 @@ public class Function internal constructor(public val name: String, public val c
             val output = client.configuration.codecProvider.decode<FunctionOutput<TResult>>(responseData)
 
             if (output.metaData != null) {
-                if (output.metaData.containsKey("resultType") &&
-                        output.metaData["resultType"] == RpcDataType.Auth.strCode &&
-                        output.result is JwtAuthorizationTicket) {
+                if (output.result is JwtAuthorizationTicket) {
                     client.configuration.authorizationTicketHolder.ticket = output.result
                 }
             }
